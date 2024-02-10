@@ -1,23 +1,31 @@
-/************ Базові типи ************/
-//bolean
-let isDone = false;
-// number
-let decimal = 6;
-//string
-let color = "blue";
-//nul and undefined
-let empty = null;
-let notParam = undefined;
-// В аргументи функції( тип даних )
-function foo(num, str, bool, empty) {
-    // logic
-}
-let user = {
-    name: "Tom",
-    age: 25,
+/**
+  |============================
+  | Базові типи
+  |============================
+*/
+// //bolean
+// let isDone: boolean = false;
+const getUserNames = (users) => {
+    return users.map((user) => user.name);
 };
-let userJack = {
-    name: "Jack",
-    age: 25,
+const users = [
+    { id: 1, name: "Alice" },
+    { id: 2, name: "Bob" },
+    { id: 3, name: "Charlie" },
+];
+let result = getUserNames(users);
+console.log(result); // ['Alice', 'Bob', 'Charlie']
+/************ Function Type ************/
+let myFunc;
+myFunc = (first, second) => {
+    console.log(`First: ${first}, Second: ${second}`);
 };
-// Array
+myFunc("Hello", 42); // Висновок: "First: Hello, Second: 42"
+/**
+  |============================
+  | Generics
+  |============================
+*/
+let arr = [];
+arr = ["str", 10, true];
+export {};
