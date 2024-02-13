@@ -6,32 +6,32 @@
 // //bolean
 // let isDone: boolean = false;
 function compare(top, bottom) {
-    return {
-        name: top.name,
-        color: top.color,
-        position: bottom.position,
-        weight: bottom.weight,
-    };
+  return {
+    name: top.name,
+    color: top.color,
+    position: bottom.position,
+    weight: bottom.weight,
+  };
 }
 /*
   У вас є функція merge, яка поєднує два об'єкти.
   Використовуйте generics, щоб вказати, що ці об'єкти можуть бути будь-якого типу.
 */
 function merge(objA, objB) {
-    return Object.assign(objA, objB);
+  return Object.assign(objA, objB);
 }
 class Component {
-    constructor(props) {
-        this.props = props;
-    }
+  constructor(props) {
+    this.props = props;
+  }
 }
 class Page extends Component {
-    pageInfo() {
-        console.log(this.props.title);
-    }
+  pageInfo() {
+    console.log(this.props.title);
+  }
 }
 function createOrUpdateUser(initialValues) {
-    // Оновлення користувача
+  // Оновлення користувача
 }
 createOrUpdateUser({ email: "user@mail.com", password: "password123" });
 /*
@@ -40,12 +40,76 @@ createOrUpdateUser({ email: "user@mail.com", password: "password123" });
 */
 export var UserRole;
 (function (UserRole) {
-    UserRole["admin"] = "admin";
-    UserRole["editor"] = "editor";
-    UserRole["guest"] = "guest";
+  UserRole["admin"] = "admin";
+  UserRole["editor"] = "editor";
+  UserRole["guest"] = "guest";
 })(UserRole || (UserRole = {}));
 const roleDescription = {
-    [UserRole.admin]: "Admin User",
-    [UserRole.editor]: "Editor User",
-    [UserRole.guest]: "Guest User",
+  [UserRole.admin]: "Admin User",
+  [UserRole.editor]: "Editor User",
+  [UserRole.guest]: "Guest User",
 };
+/**
+  |============================
+  | LSP (Liskov substitution principle) - Принцип заміщення Барбари Лісков
+  |============================
+*/
+class Vehicle {}
+class Car extends Vehicle {
+  startEngine() {
+    // запустити двигун
+    this.engageIgnition();
+    // console.log("Car engine started");
+  }
+  accelerate() {
+    // console.log("Car is accelerating");
+  }
+  engageIgnition() {
+    // це включає запалювання ();
+    // Ignition procedure
+    // console.log("Engaging car ignition");
+  }
+}
+class ElectricBus extends Vehicle {
+  startEngine() {
+    // console.log("Electric bus engine started");
+  }
+  accelerate() {
+    this.increaseVoltage();
+    this.connectIndividualEngines();
+    // console.log("Electric bus is accelerating");
+  }
+  increaseVoltage() {
+    // Electric logic
+    // console.log("Increasing electric bus voltage");
+  }
+  connectIndividualEngines() {
+    // Connection logic
+    // console.log("Connecting individual electric bus engines");
+  }
+}
+class Driver {
+  go(vehicle) {
+    vehicle.startEngine();
+    vehicle.accelerate();
+  }
+}
+let car = new Car();
+let bus = new ElectricBus();
+let driver = new Driver();
+driver.go(car); // This should work
+driver.go(bus); // This should also work
+/**
+  |============================
+  | Class in TS
+  |============================
+*/
+// class House {
+//   add;
+//   strit;
+//   constructor(n: string, b: string) {
+//     this.strit = n;
+//     this.add = "111";
+//   }
+// }
+// const house = new House("sds", "123");

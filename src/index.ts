@@ -320,45 +320,47 @@ export {};
   |============================
 */
 abstract class Vehicle {
-  abstract startEngine(): void;
-  abstract accelerate(): void;
+  abstract startEngine(): void; // запустити двигун
+  abstract accelerate(): void; // прискорити
 }
 
 class Car extends Vehicle {
   startEngine() {
+    // запустити двигун
     this.engageIgnition();
-    console.log("Car engine started");
+    // console.log("Car engine started");
   }
 
   accelerate() {
-    console.log("Car is accelerating");
+    // console.log("Car is accelerating");
   }
 
   private engageIgnition() {
+    // це включає запалювання ();
     // Ignition procedure
-    console.log("Engaging car ignition");
+    // console.log("Engaging car ignition");
   }
 }
 
 class ElectricBus extends Vehicle {
   startEngine() {
-    console.log("Electric bus engine started");
+    // console.log("Electric bus engine started");
   }
 
   accelerate() {
     this.increaseVoltage();
     this.connectIndividualEngines();
-    console.log("Electric bus is accelerating");
+    // console.log("Electric bus is accelerating");
   }
 
   private increaseVoltage() {
     // Electric logic
-    console.log("Increasing electric bus voltage");
+    // console.log("Increasing electric bus voltage");
   }
 
   private connectIndividualEngines() {
     // Connection logic
-    console.log("Connecting individual electric bus engines");
+    // console.log("Connecting individual electric bus engines");
   }
 }
 
@@ -375,3 +377,24 @@ let driver = new Driver();
 
 driver.go(car); // This should work
 driver.go(bus); // This should also work
+
+/**
+  |============================
+  | Class in TS
+  |============================
+*/
+
+// class House {
+//   add;
+//   strit;
+//   constructor(n: string, b: string) {
+//     this.strit = n;
+//     this.add = "111";
+//   }
+// }
+
+// const house = new House("sds", "123");
+
+const Car = function () {};
+
+const carBmw = new Car();
