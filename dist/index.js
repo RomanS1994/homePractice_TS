@@ -113,3 +113,42 @@ driver.go(bus); // This should also work
 //   }
 // }
 // const house = new House("sds", "123");
+
+import { IPerson, IPilot } from './type';
+
+abstract class Plane {
+  protected pilot?: IPilot;
+
+  public sitInPlane(pilot: IPilot): void {
+    this.pilot = pilot;
+  }
+
+  public abstract startEngine(): boolean;
+}
+
+class Boeing extends Plane {
+  public startEngine(): boolean {
+    if (!this.pilot) {
+      throw new Error('No pilot in cabin');
+    }
+    // Розігріваємо реактивні турбіни.
+    console.log('Запуск турбин');
+
+    this.pilot.flyMessage();
+    return true;
+  }
+}
+
+const boeing = new Boeing();
+const pilot = new Pilot('Anthony', 32);
+
+// Капітан вітає пасажирів на трапі.
+pilot.greet('Вас вітає капітан корабля');
+
+// Займає місце пілота.
+boeing.sitInPlane(pilot);
+
+// Запускаємо двигуни.
+boeing.startEngine();
+
+export { Boeing };
