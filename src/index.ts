@@ -383,3 +383,9 @@
   | Class in TS
   |============================
 */
+
+const greet = (): string => {
+  return "Hello, world!";
+};
+
+let result: number = greet();

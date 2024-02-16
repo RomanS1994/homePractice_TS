@@ -302,73 +302,7 @@
   | Class in TS
   |============================
 */
-class User {
-  #brand;
-
-  constructor({ name, age, country }) {
-    this.name = name;
-    this.age = age;
-    this.country = country;
-  }
-
-  getCountry() {
-    return this.country;
-  }
-
-  changeName(value) {
-    this.age = value;
-  }
-}
-
-const student1 = {
-  name: "Alyce",
-  age: 22,
-  country: "Poland",
+const greet = () => {
+    return "Hello, world!";
 };
-
-const student2 = {
-  name: "Mike",
-  age: 20,
-  country: "Germany",
-};
-
-const student3 = {
-  name: "Maks",
-  age: 18,
-  country: "Franish",
-};
-const userAlyce = new User(student1);
-
-userAlyce.changeName(35);
-
-// console.log(userAlyce);
-
-/**
-  |============================
-  | practic
-  |============================
-*/
-class Storage {
-  constructor(items) {
-    this.items = items;
-  }
-  getItems() {
-    return this.items;
-  }
-  addItem(newItem) {
-    this.items.push(newItem);
-  }
-  removeItem(itemToRemove) {
-    const index = this.items.indexOf(itemToRemove);
-
-    return this.items.splice(index, 1);
-  }
-}
-
-// Change code above this line
-const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
-storage.addItem("Droid");
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
-storage.removeItem("Prolonger");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+let result = greet();
