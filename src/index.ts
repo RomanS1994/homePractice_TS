@@ -384,8 +384,128 @@
   |============================
 */
 
-const greet = (): string => {
-  return "Hello, world!";
-};
+interface ProductInterface {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  getShortDescription(): string;
+}
 
-let result: number = greet();
+class Product implements ProductInterface {
+  constructor(
+    public id: number,
+    public name: string,
+    public price: number,
+    public description: string
+  ) {}
+
+  getShortDescription(): string {
+    return this.description.slice(0, 10) + "...";
+  }
+}
+
+const product = new Product(12, "sds", 23, "sdaqwqwwqŵŵeqweqwedasdw");
+// console.log(product.getShortDescription());
+
+interface ElectronicsInterfase {
+  brand: string;
+  powerOn(): string;
+}
+class Electronics extends Product implements ElectronicsInterfase {
+  constructor(
+    public brand: string,
+    id: number,
+    name: string,
+    price: number,
+    description: string
+  ) {
+    super(id, name, price, description);
+  }
+  powerOn(): string {
+    return "Пристрій включено";
+  }
+}
+
+const iron = new Electronics("qw", 23, "213", 33, "213");
+// console.log(iron.getShortDescription());
+// console.log(iron.powerOn());
+
+interface ClothingInterface {
+  size: string;
+  wear(): string;
+}
+
+class Clothing extends Product implements ClothingInterface {
+  constructor(
+    public size: string,
+    id: number,
+    name: string,
+    price: number,
+    description: string
+  ) {
+    super(id, name, price, description);
+  }
+  wear(): string {
+    return "Річ вдіта";
+  }
+}
+/**
+  |============================
+  | 
+  |============================
+*/
+
+interface IBook {
+  title: string;
+  author: string;
+}
+
+class Book implements IBook {
+  isBorrowed: boolean = false;
+  constructor(public title: string, public author: string) {}
+
+  markAsBorrowed(): void {
+    this.isBorrowed = true;
+  }
+}
+
+interface ILibrary {
+  books: Book[];
+  add: (book: Book) => void;
+  borrowBook: (title: string) => void;
+  getBorrowedBook: () => Book[];
+  getAvailablebooks: () => Book[];
+}
+
+class Library {
+  books: Book[] = [];
+
+  add(book: Book): void {
+    this.books.push(book);
+  }
+  borrowBook(title: string): void {
+    const book = this.books.find((book) => book.title === title);
+    if (!book) {
+      console.log(`There is no such book wsth title ${title}`);
+      return;
+    }
+    if (book.isBorrowed) {
+      console.log(`The book ${book.title} is already borrowed`);
+      return;
+    }
+    book.markAsBorrowed();
+  }
+
+  getBorrowedBook(): Book[] {
+    return this.books.filter((book) => book.isBorrowed);
+  }
+}
+
+const book1 = new Book("Three friends", "Rom");
+const book2 = new Book("Two friends", "Rom2");
+const library = new Library();
+library.add(book1);
+library.add(book2);
+library.borrowBook("Three friends");
+console.log("Library", library.getBorrowedBook());
